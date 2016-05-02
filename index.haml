@@ -8,14 +8,23 @@
           %link{:href => "css/app.css", :rel => "stylesheet"}
   %body
     .top
-      .title.row.align-middle.text-center
-        .column
+      .row.align-middle.text-center
+        .column.small-12.medium-4
+          .temperature.water
+            %span#water-temp 102&deg;
+            %h2 Water
+        .column.small-12.medium-4
           :markdown
             #Sam's
             #Hot Tub
             #Club
+        .column.small-12.medium-4
+          .temperature.air
+            %span#air-temp 77&deg;
+            %h2 Air
 
     %script{:src => "bower_components/jquery/dist/jquery.js"}
     %script{:src => "bower_components/what-input/what-input.js"}
     %script{:src => "bower_components/foundation-sites/dist/foundation.js"}
+    %script{:src => "bower_components/highcharts/highcharts.js"}
     %script{:src => "js/app.js"}

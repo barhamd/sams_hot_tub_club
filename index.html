@@ -12,19 +12,32 @@
   </head>
   <body>
     <div class='top'>
-      <div class='title row align-middle text-center'>
-        <div class='column'>
+      <div class='row align-middle text-center'>
+        <div class='column small-12 medium-4'>
+          <div class='temperature water'>
+            <span id='water-temp'>102&deg;</span>
+            <h2>Water</h2>
+          </div>
+        </div>
+        <div class='column small-12 medium-4'>
           <h1>Sam&#39;s</h1>
           
           <h1>Hot Tub</h1>
           
           <h1>Club</h1>
         </div>
+        <div class='column small-12 medium-4'>
+          <div class='temperature air'>
+            <span id='air-temp'>77&deg;</span>
+            <h2>Air</h2>
+          </div>
+        </div>
       </div>
     </div>
     <script src='bower_components/jquery/dist/jquery.js'></script>
     <script src='bower_components/what-input/what-input.js'></script>
     <script src='bower_components/foundation-sites/dist/foundation.js'></script>
+    <script src='bower_components/highcharts/highcharts.js'></script>
     <script src='js/app.js'></script>
   </body>
 </html>

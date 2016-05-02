@@ -53,17 +53,21 @@
 
 .top {
   background-color: $primary-color;
+  color: $off-white;
   box-shadow: inset 0px 0px 5px 0px #D8D8D8;
   height: 50%;
   min-height: 260px;
-  .title {
-    height: 100%;
-  }
   h1 {
     font-family: 'Fredoka One', cursive;
-    color: $off-white;
+    font-size: 5rem;
     text-shadow: 4px 3px 0 $red, 6px 5px 0 $orange;
-    font-size: 4rem;
+  }
+  .row {
+    height: 100%;
+  }
+  .temperature {
+    font-family: 'Fredoka One', cursive;
+    font-size: 5rem;
   }
 }
 
