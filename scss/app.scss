@@ -48,3 +48,16 @@
 
 @include motion-ui-transitions;
 @include motion-ui-animations;
+
+@import url(https://fonts.googleapis.com/css?family=Fredoka+One);
+
+header {
+  background-color: $primary-color;
+  box-shadow: inset 0px 0px 5px 0px #D8D8D8;
+  h1 {
+    font-family: 'Fredoka One', cursive;
+    color: $white;
+    text-shadow: 4px 3px 0 #ea1d1d, 6px 5px 0 #fab332;
+  }
+}
+
