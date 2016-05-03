@@ -69,5 +69,7 @@
     font-family: 'Fredoka One', cursive;
     font-size: 5rem;
   }
+  #water-temp:after, #air-temp:after {
+    content: "\b0"
+  }
 }
-
