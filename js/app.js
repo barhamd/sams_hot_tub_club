@@ -8,30 +8,33 @@ $(document).ready(function() {
   var waterUrl = 'http://things.ubidots.com/api/v1.6/variables/' + waterId + '/?token=' + token;
   var airUrl = 'http://things.ubidots.com/api/v1.6/variables/' + airId + '/?token=' + token;
 
-  $.ajax({
-    url: waterUrl,
-    error: function() {
-      console.log('ERROR');
-    },
-    dataType: 'json',
-    success: function(data) {
-      var $waterTemp = data.last_value.value;
-      $('#water-temp').html($waterTemp);
-    },
-    type: 'GET'
-  });
+  var logTemp = function() {
+    $.ajax({
+      url: waterUrl,
+      error: function() {
+        console.log('ERROR');
+      },
+      dataType: 'json',
+      success: function(data) {
+        var $waterTemp = data.last_value.value;
+        $('#water-temp').html(Math.round($waterTemp));
+      },
+      type: 'GET'
+    });
 
-  $.ajax({
-    url: airUrl,
-    error: function() {
-      console.log('ERROR');
-    },
-    dataType: 'json',
-    success: function(data) {
-      var $waterTemp = data.last_value.value;
-      $('#air-temp').html($waterTemp);
-    },
-    type: 'GET'
-  });
+    $.ajax({
+      url: airUrl,
+      error: function() {
+        console.log('ERROR');
+      },
+      dataType: 'json',
+      success: function(data) {
+        var $waterTemp = data.last_value.value;
+        $('#air-temp').html($waterTemp);
+      },
+      type: 'GET'
+    });
+  };
 
+  setInterval(logTemp, 60000);
 });
