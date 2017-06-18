@@ -35,6 +35,6 @@ $(document).ready(function() {
       type: 'GET'
     });
   };
-
+  logTemp();
   setInterval(logTemp, 60000);
 });
