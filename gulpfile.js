@@ -1,6 +1,5 @@
 const gulp = require('gulp');
 const $    = require('gulp-load-plugins')();
-const concat = require('gulp-concat'); // I shouldn't need to include this if I'm using `gulp-load-plugins`, but I'm getting an error without.
 
 const folder = {
   src:   'src/',
@@ -21,6 +20,7 @@ gulp.task('sass', function() {
     .pipe($.autoprefixer({
       browsers: ['last 2 versions', 'ie >= 9']
     }))
+    .pipe($.cleanCss())
     .pipe(gulp.dest(folder.build + 'css'));
 });
 
@@ -34,7 +34,8 @@ const jsFiles = [
 
 gulp.task('js', function() {
   return gulp.src(jsFiles)
-    .pipe(concat('main.js'))
+    .pipe($.concat('main.js'))
+    .pipe($.uglify())
     .pipe(gulp.dest(folder.build + 'js'));
 });
 
