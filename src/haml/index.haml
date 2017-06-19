@@ -1,0 +1,28 @@
+<!doctype html>
+%html.no-js{lang: "en"}
+  %head
+    %meta{charset: "utf-8"}
+    %meta{content: "ie=edge", http-equiv: "x-ua-compatible"}
+    %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}
+    %title Foundation for Sites
+    %link{href: "css/main.css", rel: "stylesheet"}
+  %body
+    .top
+      .row.align-middle.text-center
+        .column.small-6.medium-4.medium-order-1.small-order-2
+          .temperature.water
+            %span#water-temp \--
+            %h2 Water
+        .column.small-12.medium-4.medium-order-2.small-order-1
+          %h1
+            Sam's
+            %br
+            Hot Tub
+            %br
+            Club
+        .column.small-6.medium-4.medium-order-3.small-order-3
+          .temperature.air
+            %span#air-temp \--
+            %h2 Air
+
+    %script{src: "js/main.js"}
