@@ -30,10 +30,12 @@ gulp.task('sass', function() {
     .pipe($.autoprefixer({
       browsers: ['last 2 versions', 'ie >= 9']
     }))
+
   if (!devBuild) {
     cssBuild = cssBuild
       .pipe($.cleanCss())
   }
+
     return cssBuild.pipe(gulp.dest(folder.build + 'css'));
 });
 
