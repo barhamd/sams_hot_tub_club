@@ -67,7 +67,7 @@ gulp.task('deploy', function(){
       root: 'build',
       username:    process.env.username,
       hostname:    process.env.hostname,
-      destination: process.env.destination,
+      destination: process.env.destination
   }));
 });
 

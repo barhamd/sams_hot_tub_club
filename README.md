@@ -10,3 +10,8 @@
 ## Production build
 
 `NODE_ENV=production gulp build`
+
+## Deploy
+
+`NODE_ENV=production gulp build`
+`gulp deploy`
