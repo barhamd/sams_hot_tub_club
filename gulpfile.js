@@ -1,5 +1,6 @@
 const gulp = require('gulp');
 const $    = require('gulp-load-plugins')();
+const env  = require ('gulp-env');
 
 const folder = {
   src:   'src/',
@@ -23,20 +24,20 @@ let devBuild = (process.env.NODE_ENV !== 'production')
 
 gulp.task('sass', function() {
   let cssBuild = gulp.src(folder.src + 'scss/main.scss')
-    .pipe($.sass({
-      includePaths: sassPaths
-    })
-      .on('error', $.sass.logError))
-    .pipe($.autoprefixer({
-      browsers: ['last 2 versions', 'ie >= 9']
-    }))
+  .pipe($.sass({
+    includePaths: sassPaths
+  })
+    .on('error', $.sass.logError))
+  .pipe($.autoprefixer({
+    browsers: ['last 2 versions', 'ie >= 9']
+  }))
 
   if (!devBuild) {
     cssBuild = cssBuild
       .pipe($.cleanCss())
   }
 
-    return cssBuild.pipe(gulp.dest(folder.build + 'css'));
+  return cssBuild.pipe(gulp.dest(folder.build + 'css'));
 });
 
 gulp.task('js', function() {
@@ -48,7 +49,7 @@ gulp.task('js', function() {
     .pipe($.uglify());
   }
 
-    return jsBuild.pipe(gulp.dest(folder.build + 'js'));
+  return jsBuild.pipe(gulp.dest(folder.build + 'js'));
 });
 
 gulp.task('haml', function() {
@@ -58,6 +59,17 @@ gulp.task('haml', function() {
 });
 
 gulp.task('build', ['haml', 'sass', 'js'])
+
+gulp.task('deploy', function(){
+  const envs = env({file:'.env.json'});
+  gulp.src(folder.build + '**')
+    .pipe($.rsync({
+      root: 'build',
+      username:    process.env.username,
+      hostname:    process.env.hostname,
+      destination: process.env.destination,
+  }));
+});
 
 gulp.task('default', ['build'], function() {
   gulp.watch([folder.src + 'scss/**/*'],  ['sass']);

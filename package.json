@@ -8,8 +8,10 @@
     "gulp-autoprefixer": "^3.1.0",
     "gulp-clean-css": "^3.4.2",
     "gulp-concat": "^2.6.1",
+    "gulp-env": "^0.4.0",
     "gulp-haml": "^0.1.6",
     "gulp-load-plugins": "^1.1.0",
+    "gulp-rsync": "0.0.8",
     "gulp-sass": "^2.1.0",
     "gulp-uglify": "^3.0.0"
   },
