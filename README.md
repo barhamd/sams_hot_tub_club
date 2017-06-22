@@ -7,11 +7,25 @@
 3. `bower install`
 4. `gulp`
 
-## Production build
+## Setting Environmental Variables
 
-`NODE_ENV=production gulp build`
+Deploying and building require environmental variables. Set them in
+`.env.json`. See an example in `.env.json.example`.
+
+## Watching
+
+`gulp`
+
+## Building
+
+`gulp build`
+
+### Build with minimization
+`NODE_ENV=[production|staging] gulp build`
 
 ## Deploy
 
-`NODE_ENV=production gulp build`
-`gulp deploy`
+`NODE_ENV=[production|staging] gulp deploy`
+
+*Note*: Not including `NODE_ENV` in the command will deploy to
+`process.env.stagHost` without compressing or minifying assets.

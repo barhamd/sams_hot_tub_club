@@ -20,21 +20,24 @@ const jsFiles = [
   folder.src + 'js/main.js'
 ];
 
-let devBuild = (process.env.NODE_ENV !== 'production')
+let prodBuild = (process.env.NODE_ENV === 'production')
+let stagBuild = (process.env.NODE_ENV === 'staging')
+let devBuild = (!(prodBuild || stagBuild))
+let envs = env({file:'.env.json'});
 
 gulp.task('sass', function() {
   let cssBuild = gulp.src(folder.src + 'scss/main.scss')
   .pipe($.sass({
     includePaths: sassPaths
   })
-    .on('error', $.sass.logError))
+  .on('error', $.sass.logError))
   .pipe($.autoprefixer({
     browsers: ['last 2 versions', 'ie >= 9']
   }))
 
   if (!devBuild) {
     cssBuild = cssBuild
-      .pipe($.cleanCss())
+    .pipe($.cleanCss())
   }
 
   return cssBuild.pipe(gulp.dest(folder.build + 'css'));
@@ -60,15 +63,18 @@ gulp.task('haml', function() {
 
 gulp.task('build', ['haml', 'sass', 'js'])
 
-gulp.task('deploy', function(){
-  const envs = env({file:'.env.json'});
+gulp.task('deploy', ['build'], function(){
+  env.set({
+    hostName: !prodBuild ? process.env.stagHost : process.env.prodHost
+  });
   gulp.src(folder.build + '**')
     .pipe($.rsync({
       root: 'build',
-      username:    process.env.username,
-      hostname:    process.env.hostname,
+      username:    process.env.userName,
+      hostname:    process.env.hostName,
       destination: process.env.destination
   }));
+  envs.reset;
 });
 
 gulp.task('default', ['build'], function() {
