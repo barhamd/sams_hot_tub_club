@@ -23,7 +23,7 @@ const jsFiles = [
 let prodBuild = (process.env.NODE_ENV === 'production')
 let stagBuild = (process.env.NODE_ENV === 'staging')
 let devBuild = (!(prodBuild || stagBuild))
-let envs = env({file:'.env.json'});
+env({file:'.env.json'});
 
 gulp.task('sass', function() {
   let cssBuild = gulp.src(folder.src + 'scss/main.scss')
@@ -74,7 +74,7 @@ gulp.task('deploy', ['build'], function(){
       hostname:    process.env.hostName,
       destination: process.env.destination
   }));
-  envs.reset;
+  env.reset;
 });
 
 gulp.task('default', ['build'], function() {
