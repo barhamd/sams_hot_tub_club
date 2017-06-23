@@ -77,7 +77,13 @@ gulp.task('deploy', ['build'], function(){
   env.reset;
 });
 
-gulp.task('default', ['build'], function() {
+gulp.task('webserver', function() {
+  $.connect.server({
+    root: './build'
+  });
+});
+
+gulp.task('default', ['build', 'webserver'], function() {
   gulp.watch([folder.src + 'scss/**/*'],  ['sass']);
   gulp.watch([folder.src + 'haml/**/*'],  ['haml']);
   gulp.watch([folder.src + 'js/**/*'],    ['js']);
